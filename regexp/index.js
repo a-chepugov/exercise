@@ -1,15 +1,15 @@
 "use strict";
 
-const pattern = /\d*/;
+const notANumber = /\D/g;
+const phoneSegments = /(\d{3})(\d{2})(\d{7})/;
 
 module.exports = function ( phoneString ) {
-	
-	// Магия должна произойти здесь
-
+	const phoneStringJustNumbers = phoneString.replace(notANumber, '');
+	const [tel, country, area, local] = phoneStringJustNumbers.match(phoneSegments);
 	return {
-		tel: '380991234567',
-		country: '380',
-		area: '99',
-		local: '1234567'
+		tel,
+		country,
+		area,
+		local
 	}
 };
